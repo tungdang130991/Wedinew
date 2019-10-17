@@ -1,0 +1,172 @@
+﻿@model IEnumerable<WebEDI.Respository.ViewModels.ViewNouhinmeisaiModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="~/css/Nouhinmeisais.css" rel="stylesheet" />
+
+
+<div id="div_headerOption" class="d-block mt-2 mb-2 content_box_solid p-3">
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="DateOfAcceptance" class="col-form-label form_lable">検収年月</label>
+            <input id="txtDate" type="text" size="10" onkeydown="return false" class="form-control">
+        </div>
+
+        <div class="form-group ml-2">
+            <label for="ContactPersonName" class="col-form-label form_lable">問合せ担当者名</label>
+            <input type="text" readonly size="16" class="form-control" id="ContactPersonName" value="@User.Claims.FirstOrDefault(c => c.Type=="f_toiawase_tantousha_mei").Value">
+        </div>
+
+        <div class="form-group ml-2">
+            <label for="inquiryTEL" class="col-form-label form_lable">問合せTEL</label>
+            <input type="text" readonly size="8" class="form-control" id="inquiryTEL" value="@User.Claims.FirstOrDefault(c => c.Type=="f_toiawase_tel").Value">
+        </div>
+
+        <div class="form-group ml-2">
+            <label for="inquiryFAX" class="col-form-label form_lable">問合せFAX</label>
+            <input type="text" size="8" readonly class="form-control" id="inquiryFAX" value="@User.Claims.FirstOrDefault(c => c.Type=="f_toiawase_fax").Value">
+        </div>
+
+        <div class="form-group ml-2">
+            <label for="ReceivedDate" class="col-form-label form_lable">受信日時</label>
+            <input type="text" readonly size="16" class="form-control" id="ReceivedDate" value="2019/07/12 17:47">
+        </div>
+    </div>
+</div>
+
+<div class="table-scrollable">
+    <table id="pruebatabla" style="border-collapse:separate !important">
+        <thead>
+            <tr>
+                <th class="header_table col_3">検収予定区分</th>
+                <th class="header_table col_3">注文伝票NO</th>
+                <th class="header_table col_3">注文明細行</th>
+                <th class="header_table col_3">購買機種名</th>
+                <th class="header_table col_3">品目</th>
+                <th class="header_table col_3">品名</th>
+                <th class="header_table col_3">サイズ(W)</th>
+                <th class="header_table col_3">サイズ(H)</th>
+                <th class="header_table col_3">サイズ(L)</th>
+                <th class="header_table col_3">仕様</th>
+                <th class="header_table col_3">仕様備考</th>
+                <th class="header_table col_3">検収日</th>
+                <th class="header_table col_3">検収数</th>
+                <th class="header_table col_3">単価</th>
+                <th class="header_table col_3">金額</th>
+                <th class="header_table col_3">消費税金額</th>
+            </tr>
+        </thead>
+        <tbody style="border:1px !important">
+            @{
+                int count = 0;
+
+                foreach (var item in Model)
+                {
+                    if (count % 2 == 0)
+                    {
+                        <tr class="row_grey">
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuYoteiKubun)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FChuumonNo)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FChuumonMeisaiGyou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKoubaiKishumei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FHinmokuMei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKatashiki)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuW)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuH)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuL)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiyouJouhou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiyouBikou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuHi)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuSuu)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiireTanka)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiireKingaku)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShouhizeiKingaku)</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="row_white">
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuYoteiKubun)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FChuumonNo)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FChuumonMeisaiGyou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKoubaiKishumei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FHinmokuMei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKatashiki)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuW)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuH)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FSaizuL)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiyouJouhou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiyouBikou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuHi)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FKenshuuSuu)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiireTanka)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShiireKingaku)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => item.FShouhizeiKingaku)</td>
+                        </tr>
+                    }
+                    count += 1;
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="div_footerOption">
+    <div class="d-block mt-2">
+        <div class="form-inline justify-content-end">
+            <div class="form-group">
+                <label for="TotalAmount" class="col-form-label form_lable">金額合計</label>
+                <input type="text" readonly class="form-control" id="TotalAmount" value=@ViewBag.sumAmount>
+            </div>
+            <div class="form-group ml-2">
+                <label for="TotalConsumptionAmount" class="col-form-label form_lable">消費税金額合計</label>
+                <input type="text" readonly class="form-control" id="TotalConsumptionAmount" value=@ViewBag.sumTexAmount>
+            </div>
+        </div>
+    </div>
+    <div class="d-block mt-3">
+        <div class="form-inline  justify-content-end">
+            <button id="ExportCSV" class="btn mr-2" type="button">
+                CSVダウンロード
+            </button>
+            <button id="ExportPDF" class="btn  mr-2" type="button">
+                納品明細一覧表出力
+            </button>
+            <button id="butBack" class="btn" asp-route="Nouhinmeisais" type="button">
+                戻る
+            </button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/Nouhinmeisai.js" asp-append-version="true"></script>
+    <script src="~/js/freeze-table.js"></script>
+    <script>
+        $(document).ready(function () {
+            reloadScrollTable();
+
+            $(window).resize(function () {
+                reloadScrollTable();
+            });
+        });
+
+        function reloadScrollTable() {
+            //            var h = $(".container").height() - ($("#div_headerOption").height() + $("#div_footerOption").height() + $(".webediheader").height());
+            var h = $(window).height() - ($("#div_headerOption").height() + $("#div_footerOption").height() + $(".webediheader").height() + 120);
+
+            $(".table-scrollable").css('height', h);
+
+            $(".table-scrollable").freezeTable({
+                'scrollable': true,
+                'columnNum': 2,
+                //'freezeColumn': false,
+                'scrollBarHeight': 17
+            });
+        }
+    </script>
+}

@@ -1,0 +1,69 @@
+﻿@using WebEDI.Common.Core
+@model IEnumerable<WebEDI.Respository.ViewModels.OrderModel>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="table-scrollable">
+    <table style="border-collapse:separate !important" id="table_orders" width="100%" class="table table_content">
+        <thead>
+            <tr>
+                <th class="header_table col_1">対象</th>
+                <th class="header_table col_1"></th>
+                <th class="header_table col_3">仕入先</th>
+                <th class="header_table col_3">仕入先名</th>
+                <th class="header_table col_3">注文伝票NO</th>
+                <th class="header_table col_3">品名</th>
+                <th class="header_table col_3">件数</th>
+                <th class="header_table col_3">注文日</th>
+                <th class="header_table col_3">希望納期</th>
+                <th class="header_table col_3">受信日時</th>
+                <th class="header_table col_3">確認日時</th>
+            </tr>
+        </thead>
+        <tbody style="border:1px !important">
+            @{
+                int count = 0;
+                foreach (var order in Model)
+                {
+                    if (count % 2 == 0)
+                    {
+                        <tr class="row_grey">
+                            <td class="cell_table col_1" nowrap><input type="checkbox" id="@Html.DisplayFor(modelItem => order.FChuumonNo)" /></td>
+                            <td class="cell_table col_1" nowrap><button style="width:80px;height:30px" type="button" onclick="window.location.href='/OrderDetail/Index?orderid=@Html.DisplayFor(modelItem => order.FChuumonNo)'">表示</button></td>
+                            <td>@Html.DisplayFor(modelItem => order.FShiiresakiCd)</td>
+                            <td class="cell_table col_3" nowrap id="@Html.DisplayFor(modelItem => order.FChuumonNo)suplier">@Html.DisplayFor(modelItem => order.FShiiresakiMei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FChuumonNo)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKoubaiKishumei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FSuuryou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FChuumonHi)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKibouNouki)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FJushinNichiji, "{yyyy/MM/dd}")</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKakuninNichiji)</td>
+                            <td style="display:none" id="@Html.DisplayFor(modelItem => order.FChuumonNo)mailsuplier">@Html.DisplayFor(modelItem => order.FMeruadoresu)</td>
+                            <td style="display:none" id="@Html.DisplayFor(modelItem => order.FChuumonNo)confirm">@Html.DisplayFor(modelItem => order.FMeruSoushinKubun)</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="row_white">
+                            <td class="cell_table col_1" nowrap><input type="checkbox" id="@Html.DisplayFor(modelItem => order.FChuumonNo)" /></td>
+                            <td class="cell_table col_1" nowrap><button style="width:80px;height:30px" type="button" onclick="window.location.href='/OrderDetail/Index?orderid=@Html.DisplayFor(modelItem => order.FChuumonNo)'">表示</button></td>
+                            <td>@Html.DisplayFor(modelItem => order.FShiiresakiCd)</td>
+                            <td class="cell_table col_3" nowrap id="@Html.DisplayFor(modelItem => order.FChuumonNo)suplier">@Html.DisplayFor(modelItem => order.FShiiresakiMei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FChuumonNo)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKoubaiKishumei)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FSuuryou)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FChuumonHi)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKibouNouki)</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FJushinNichiji, "{yyyy/MM/dd}")</td>
+                            <td class="cell_table col_3" nowrap>@Html.DisplayFor(modelItem => order.FKakuninNichiji)</td>
+                            <td style="display:none" id="@Html.DisplayFor(modelItem => order.FChuumonNo)mailsuplier">@Html.DisplayFor(modelItem => order.FMeruadoresu)</td>
+                            <td style="display:none" id="@Html.DisplayFor(modelItem => order.FChuumonNo)confirm">@Html.DisplayFor(modelItem => order.FMeruSoushinKubun)</td>
+                        </tr>
+                    }
+                    count += 1;
+                }
+            }
+        </tbody>
+    </table>
+</div>

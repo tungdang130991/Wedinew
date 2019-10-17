@@ -1,0 +1,173 @@
+﻿
+
+.btnSearch{
+    float:right;
+    margin-right:50px;
+}
+
+.itemSearch{
+   margin-right:60px;
+}
+
+#dropdownSearch{
+    width:120px;
+    height:30px;
+    margin-right:80px;
+}
+
+#div_header {
+    border: 1px solid gainsboro;
+    width: 89%;
+    height: 81px;
+    text-align: left;
+    margin-left: 5%;
+    padding-left: 25px;
+    padding-top: 26px;
+}
+
+
+#logo{
+    margin-left:5%;
+    font-weight:800;
+    font-size:xx-large;
+}
+
+.dropdown {    
+    /*height: 25px;*/
+}
+
+.dropdown-short {
+    width: 70px;
+    height: 25px;
+}
+
+.txt_table {
+    width: 200px;
+    height: 25px;
+}
+
+.txt_number {
+    width: 60px;
+    height: 25px;
+}
+.date_picker {
+    width: 120px;
+    height: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.align-self-center {
+   text-align: end;
+   width: 87%;
+}
+
+.navbar-inverse{
+    background-color:white;
+}
+
+.navbar-header{
+    padding-top:6px;
+}
+
+.txt_header {
+    margin-left: 100px;
+    width: 500px;
+    line-height: 30px;
+    font-weight: bolder;
+}
+
+.text_header {
+    color: black;
+    padding-top: 150px;
+    margin-left: 25px;
+    text-decoration: none;
+    padding-top: 0px;
+   
+}
+
+.header_div{
+    margin-top:6px;
+    padding-top:4px;
+    margin-bottom:10px;
+}
+
+.bold_text{
+    font-weight:bolder;
+}
+
+#date {
+    width: 240px;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+.row_grey {
+    background-color: #f5f5f5;
+}
+
+.row_white{
+    background-color:white;
+}
+
+table tbody {
+    overflow: auto;
+    height: 100px;
+}
+
+.square-radio {
+    border: 1px solid black;
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+#span_info{
+    margin-left:60px;
+}
+
+#content_manufacturing{
+    width:100%;
+    height:100%;
+}
+
+#top_panel{
+    padding-left:5%;
+    height:12%;
+    width:100%;
+}
+
+.cell_top{
+    height:100%;
+    float:left;
+    padding-top:2%;
+    text-align:center;
+}
+
+.cell_top a{
+    color:black;
+}
+
+.cell_top_title {
+    height: 100%;
+    float: left;
+    padding-top: 1%;
+    text-align: center;
+}
+
+#logo_panel {
+    height: 6%;
+    width: 100%;
+    margin-bottom: 8px;
+    font-family: Arial;
+}
+
+#div_button {
+    height: 6%;
+    width: 100%;
+    margin-top:11px;
+    padding-left:64%;
+}

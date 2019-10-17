@@ -1,0 +1,85 @@
+﻿@using WebEDI.Respository.ViewModels
+@using WebEDI.ViewComponents
+@model LoginModelExtension
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="webedimenu">
+
+    <div class="webedihistory">
+        <div>
+            <label>前回ログイン日時：</label>
+            <span> @Model.DateLoginFirst</span>
+        </div>
+        <div>
+            <label>今回ログイン日時：</label>
+            <span> @Model.DateLoginNow</span>
+        </div>
+
+    </div>
+    <div class="menu">
+        @if (Model.Role == "Admin")
+        {
+            <div>
+                <a href="/Account/Index" class="divbutton">
+                    ユーザ設定
+                </a>
+                <a href="#" class="divbutton">
+                    注文情報確認照会
+                </a>
+            </div>
+        }
+        else
+        {
+            <div>
+                <a href="#" class="divbutton">
+                    注文情報照会
+                </a>
+                <a href="Nouhinmeisais" class="divbutton">
+                    納品明細情報照会
+                </a>
+            </div>
+
+        }
+    </div>
+
+
+
+</div>
+<div class="homefooter">
+    <fieldset class="homefieldset">
+        <legend class="homelegend">
+            EDI News
+        </legend>
+        @(await Component.InvokeAsync<FooterViewComponent>())
+    </fieldset>
+</div>
+
+<button id="Export" class="btn mr-2" type="button">
+    Download
+</button>
+@section Scripts{
+    <script>
+        $('#Export').on('click', function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/Export",
+                cache: false,
+                success: function (data) {                     
+                    var bytes = new Uint8Array(data); 
+                    var blob = new Blob([data], { type: "application/csv;charset=UTF-8" });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "data.csv";
+                    link.click();
+                },
+                error: function (data) {
+                    alert('Something went wrong, contact IT for more information')
+                }
+            });
+        });
+    </script>
+}

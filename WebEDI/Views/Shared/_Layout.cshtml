@@ -1,0 +1,101 @@
+﻿@using WebEDI.ViewComponents
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebEDI</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet" />
+        @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link href="~/lib/fontawesome-free-5.11.2-web/css/all.min.css" rel="stylesheet" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="webediheader">
+            <nav class="navbar navbar-expand-sm navbar-collapse">
+                <div class="col-3 d-flex justify-content-start" style="padding: 0.5rem 1rem;">
+                    <span >
+                        協立エアテック　WebEDIシステム
+                    </span>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    @ViewData["page_title"]
+                </div>
+                <div class="col-3 navbar-collapse collapse w-100 order-3 dual-collapse2" >
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 m-lg-auto" style="color:white;font-size:16px;">
+                                    @if (@ViewData["user_companyname"] != null)
+                                    {
+                                        @ViewData["user_companyname"] 
+                                        @Html.Encode(":")
+                                    }
+
+                                    @if(User.Identity.IsAuthenticated)
+                                    {
+                                        @Html.Encode(User.Identity.Name)
+                                    }
+                                </span>
+                                @*<img class="img-profile rounded-circle" src="~/images/icon-user.png" />*@
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/Account/Logout">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="webedibody">
+            @RenderBody()
+        </div>
+        @*<div class="webedifooter">
+        </div>*@
+    </div>
+
+
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - WebEDI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/fontawesome-free-5.11.2-web/js/fontawesome.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+        <script src="~/lib/fontawesome-free-5.11.2-web/js/fontawesome.min.js"></script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
